@@ -95,6 +95,7 @@ The final model architecture can be found in lines 93-118 of model.py. It consis
 
 Here is a visualization of the architecture (note: visualizing the architecture is optional according to the project rubric)
 I have used the same architecture as [Nvidia](https://devblogs.nvidia.com/deep-learning-self-driving-cars/) with same filter, but different size input. I have also added a dropout layer with 0.5 probability to reduce overfitting.
+
 ![alt text][image1]
 
 #### 3. Creation of the Training Set & Training Process
