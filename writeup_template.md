@@ -103,11 +103,17 @@ I have used the same architecture as [Nvidia](https://devblogs.nvidia.com/deep-l
 I have used the data provided by Udacity. Since model was not training well on initial dataset, I augmented the data by flipping each image vertically. 
 
 Here are examples of flipped image
-Center image
+
+**Center image** 
+
 ![alt text][image2] ![alt text][image3]
-Left image
+
+**Left image**
+
 ![alt text][image4] ![alt text][image5]
-Right image
+
+**Right image**
+
 ![alt text][image6] ![alt text][image7]
 
 The dataset for training was split into training and validation. I set 20% of the data for validation. 
