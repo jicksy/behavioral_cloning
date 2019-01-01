@@ -38,7 +38,7 @@ My project includes the following files:
 * model.py containing the script to create and train the model
 * drive.py for driving the car in autonomous mode
 * model.h5 containing a trained convolution neural network 
-* writeup_report.md or writeup_report.pdf summarizing the results
+* writeup_report.md summarizing the results
 
 #### 2. Submission includes functional code
 Using the Udacity provided simulator and my drive.py file, the car can be driven autonomously around the track by executing 
@@ -54,23 +54,22 @@ The model.py file contains the code for training and saving the convolution neur
 
 #### 1. An appropriate model architecture has been employed
 
-My model consists of a convolution neural network with 3x3 filter sizes and depths between 32 and 128 (model.py lines 18-24) 
 My model is based on [NVIDIA paper](https://devblogs.nvidia.com/deep-learning-self-driving-cars/). The model uses 6 convolutional layers and 4 fully connected dense layers. The code can be found in lines: 93 to 115
-The data is normalized in the model using a Keras lambda layer (code line 96). 
+The data is normalized in the model using a Keras lambda layer (code line 96). I have used RELU activation, and also added a dropout layer to reduce overfitting.
 
 #### 2. Attempts to reduce overfitting in the model
 
-The model contains dropout layers in order to reduce overfitting (model.py lines 21). 
+The model contains dropout layers in order to reduce overfitting (model.py lines 111). 
 
 The model was trained and validated on different data sets to ensure that the model was not overfitting (code line 10-16). The model was tested by running it through the simulator and ensuring that the vehicle could stay on the track.
 
 #### 3. Model parameter tuning
 
-The model used an adam optimizer, so the learning rate was not tuned manually (model.py line 25).
+The model used an adam optimizer, so the learning rate was not tuned manually (model.py line 121).
 
 #### 4. Appropriate training data
 
-Training data was chosen to keep the vehicle driving on the road. I used a combination of center lane driving, recovering from the left and right sides of the road. I started off with the sample data provided by Udacity and augmented the data to make it more appropriate. 
+Training data was chosen to keep the vehicle driving on the road. I used a combination of center lane driving, recovering from the left and right sides of the road. I started off with the sample data provided by Udacity and augmented the data to make better learning. 
 
 For details about how I created the training data, see the next section. 
 
@@ -86,7 +85,7 @@ In order to gauge how well the model was working, I split my image and steering 
 
 To combat the overfitting, I modified the model so that I could add dropout. 
 
-The final step was to run the simulator to see how well the car was driving around track one. There were a few spots where the vehicle fell off the track, to improve the driving behavior in these cases, I augmented data to add RGB and flipped images. This made the model train better.
+The final step was to run the simulator to see how well the car was driving around track one. There were a few spots where the vehicle fell off the track, to improve the driving behavior in these cases, I augmented data to add flipped images. This made the model train better.
 
 At the end of the process, the vehicle is able to drive autonomously around the track without leaving the road.
 
@@ -95,24 +94,24 @@ At the end of the process, the vehicle is able to drive autonomously around the 
 The final model architecture can be found in lines 93-118 of model.py. It consists of normalization layer, followed by 6 convolutional neural network and 4 fully connected layers.
 
 Here is a visualization of the architecture (note: visualizing the architecture is optional according to the project rubric)
-I have used the same architecture as [Nvidia](https://devblogs.nvidia.com/deep-learning-self-driving-cars/) with same filter, but different size input. 
+I have used the same architecture as [Nvidia](https://devblogs.nvidia.com/deep-learning-self-driving-cars/) with same filter, but different size input. I have also added a dropout layer with 0.5 probability to reduce overfitting.
 ![alt text][image1]
 
 #### 3. Creation of the Training Set & Training Process
 
-I have used the data provided by Udacity. Since model was not training well on initial dataset, I augmented the data by flipping each image vertically. 
+I have used the data provided by Udacity. Since model was not training well on initial dataset, I augmented the data by flipping each image vertically. Augmentation was done using a generator to speed up the training process. Code of generator function can be found in lines 28 to 81.
 
 Here are examples of flipped image
 
-**Center image** 
+**Center image** (Original and flipped) 
 
 ![alt text][image2] ![alt text][image3]
 
-**Left image**
+**Left image** (Original and flipped)
 
 ![alt text][image4] ![alt text][image5]
 
-**Right image**
+**Right image** (Original and flipped)
 
 ![alt text][image6] ![alt text][image7]
 
